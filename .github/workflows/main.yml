@@ -9,4 +9,4 @@ jobs:
           curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches' \
           --header 'content-type: application/json' \
           --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}' \
-          --data-raw '{"name":"hello_world_2"}'
+          --data-raw '{"name":"a brand new branch"}'
