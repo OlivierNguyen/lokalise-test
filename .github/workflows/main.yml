@@ -1,7 +1,7 @@
 name: CI
 create:
   branches:
-    - *
+    - "*"
 jobs:
   my-job:
     runs-on: ubuntu-latest
