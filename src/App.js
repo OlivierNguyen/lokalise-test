@@ -25,11 +25,11 @@ function App() {
         <p>{t("main.title")}</p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://lokalise.com/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn translations
+          Learn about Lokalise
         </a>
       </header>
     </div>
