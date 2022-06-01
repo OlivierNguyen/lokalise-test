@@ -4,9 +4,13 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - name: create a lokalise branch
         run: |
           curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches' \
           --header 'content-type: application/json' \
           --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}' \
-          --data-raw '{"name": ${{ GITHUB_REF##*/ }}}'
+          --data-raw '{"name": ${{ steps.extract_branch.outputs.branch }}}'
