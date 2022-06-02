@@ -1,8 +1,7 @@
 name: CI
 on:
-  push:
-    branches:
-      - "*"
+  create:
+    ref_type: branch
 jobs:
   my-job:
     runs-on: ubuntu-latest
