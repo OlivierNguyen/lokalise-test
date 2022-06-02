@@ -1,7 +1,9 @@
-name: CI
+name: Create Lokalise branch when a new Git branch is created
+
 on:
   create:
     ref_type: branch
+
 jobs:
   my-job:
     runs-on: ubuntu-latest
@@ -10,7 +12,7 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-      - name: create a lokalise branch
+      - name: Create a Lokalise branch
         run: |
           curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches' \
           --header 'content-type: application/json' \

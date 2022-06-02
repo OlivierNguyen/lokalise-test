@@ -1,20 +1,17 @@
-name: "build-test"
+name: Check if branch is mergeable
 
 on:
   pull_request:
     types: [opened, ready_for_review, reopened, edited, synchronize]
 
-
 jobs:
   test_something:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: LouisBrunner/diff-action@v0.1.0
-      with:
-        old: src/i18n/locales/en.json
-        new: src/i18n/locales/fr.json
-        mode: addition
-        tolerance: same
-        
-        
+      - uses: actions/checkout@v1
+      - uses: LouisBrunner/diff-action@v0.1.0
+        with:
+          old: src/i18n/locales/en.json
+          new: src/i18n/locales/fr.json
+          mode: addition
+          tolerance: same
