@@ -29,7 +29,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn about Lokalise
+          {t("main.button")}
         </a>
       </header>
     </div>
