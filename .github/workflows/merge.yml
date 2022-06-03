@@ -31,5 +31,5 @@ jobs:
 
       - name: Delete Lokalise branch after merge
         run: |
-          curl --request DELETE \
-          --url https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/${{ steps.branch-id.outputs.current_branch }}
+          curl --location --request DELETE 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/${{ steps.branch-id.outputs.current_branch }}' \
+          --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}'
