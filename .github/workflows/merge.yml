@@ -21,7 +21,7 @@ jobs:
 
       - name: Get current branch id from Lokalise
         id: branch-id
-        run: echo "::set-output name=current_branch::$(jq -r --arg queryname "${{ steps.branch-name.outputs.current_branch }}" '.branches[] | select(.name == $queryname).branch_id' lokaliseBranches.json)"
+        run: echo "::set-output name=current_branch::$(jq -r --arg queryname "${{ steps.branch-name.outputs.ref_branch }}" '.branches[] | select(.name == $queryname).branch_id' lokaliseBranches.json)"
 
       - name: Merge Lokalise current branch on Lokalise master branch
         run: |
