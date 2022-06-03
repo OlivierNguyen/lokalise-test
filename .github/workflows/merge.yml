@@ -28,3 +28,8 @@ jobs:
           curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/${{ steps.branch-id.outputs.current_branch }}/merge' \
           --header 'content-type: application/json' \
           --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}'
+
+      - name: Delete Lokalise branch after merge
+        run: |
+          curl --request DELETE \
+          --url https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/${{ steps.branch-id.outputs.current_branch }}
