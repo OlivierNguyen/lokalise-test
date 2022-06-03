@@ -1,7 +1,6 @@
 {
     "main": {
-        "title": "Bienvenue Constant dans mon app' React ! On teste la branch feature !"
-    },
-    "conflict_key": "Coucou conflit",
-    "bonspoir": "bonne soirée"
+        "title": "Bienvenue dans mon application React !",
+        "button": "En savoir plus sur Lokalise"
+    }
 }
