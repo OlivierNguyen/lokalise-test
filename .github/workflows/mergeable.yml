@@ -45,6 +45,9 @@ jobs:
       - name: Compare en.json from Lokalise with en.json from Github
         run: diff <(jq --sort-keys . public/locale/en.json) <(jq --sort-keys . repo/src/i18n/locale/en.json)
 
+      - name: Compare fr.json from Lokalise with fr.json from Github
+        run: diff <(jq --sort-keys . public/locale/fr.json) <(jq --sort-keys . repo/src/i18n/locale/fr.json)
+
       # - name: Compare fr.json from Lokalise with fr.json from Github
       #   uses: LouisBrunner/diff-action@v0.1.0
       #   with:
