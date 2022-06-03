@@ -1,5 +1,7 @@
 {
-  "main": {
-    "title": "Bienvenue dans mon app' React !"
-  }
+    "main": {
+        "title": "Bienvenue Constant dans mon app' React ! On teste la branch feature !"
+    },
+    "conflict_key": "Coucou conflit",
+    "bonspoir": "bonne soirée"
 }

@@ -1,20 +1,20 @@
-name: Create Lokalise branch when a new Git branch is created
+name: On branch creation
 
 on:
   create:
     ref_type: branch
 
 jobs:
-  my-job:
+  create_lokalise_branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
+
       - name: Create a Lokalise branch
         run: |
           curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches' \
           --header 'content-type: application/json' \
           --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}' \
-          --data-raw '{"name": "${{ steps.extract_branch.outputs.branch }}"}'
+          --data-raw '{"name": "${{ steps.branch-name.outputs.current_branch }}"}'

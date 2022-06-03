@@ -1,5 +1,7 @@
 {
-  "main": {
-    "title": "Welcome to my React app!"
-  }
+    "main": {
+        "title": "Welcome Constant to my React app! Let's modify this trads!"
+    },
+    "conflict_key": "Hello conflict ",
+    "bonspoir": "good evening"
 }

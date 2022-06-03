@@ -5,13 +5,55 @@ on:
     types: [opened, ready_for_review, reopened, edited, synchronize]
 
 jobs:
-  test_something:
+  compare_translation_files:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: LouisBrunner/diff-action@v0.1.0
+      - name: Get PR branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.2
+
+      - name: Get and save Lokalise API response
+        run: |
+          > lokaliseResponse.json curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570:${{ steps.branch-name.outputs.current_branch }}/files/download' \
+          --header 'content-type: application/json' \
+          --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}' \
+          --data-raw '{"format":"json","original_filenames":false, "bundle_structure": "locale/%LANG_ISO%.%FORMAT%"}'
+
+      - name: Get Lokalise translation file URL from API response
+        id: lokaliseFileUrl
+        uses: notiz-dev/github-action-json-property@release
         with:
-          old: src/i18n/locales/en.json
-          new: src/i18n/locales/fr.json
+          path: "lokaliseResponse.json"
+          prop_path: "bundle_url"
+
+      - name: Download Lokalise translation file (.zip) inside public directory
+        uses: suisei-cn/actions-download-file@v1
+        with:
+          url: "${{steps.lokaliseFileUrl.outputs.prop}}"
+          target: public/
+
+      - name: Unzip Lokalise translation file and store it inside public directory
+        uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq public/Lokalise_Test-locale.zip -d public/
+
+      - name: Checkout Github repository and store it inside public directory
+        uses: actions/checkout@v3
+        with:
+          path: "repo"
+
+      - name: Compare en.json from Lokalise with en.json from Github
+        uses: LouisBrunner/diff-action@v0.1.0
+        with:
+          old: public/locale/en.json
+          new: repo/src/i18n/locale/en.json
+          mode: addition
+          tolerance: same
+
+      - name: Compare fr.json from Lokalise with fr.json from Github
+        uses: LouisBrunner/diff-action@v0.1.0
+        with:
+          old: public/locale/fr.json
+          new: repo/src/i18n/locale/fr.json
           mode: addition
           tolerance: same
