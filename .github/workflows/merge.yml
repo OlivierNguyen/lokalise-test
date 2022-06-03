@@ -23,8 +23,11 @@ jobs:
         id: branch-id
         run: echo "::set-output name=current_branch::$(jq -r --arg queryname "${{ steps.branch-name.outputs.current_branch }}" '.branches[] | select(.name == $queryname).branch_id' lokaliseBranches.json)"
 
+      - name: Hellp
+        run: echo "${{ steps.branch-id.outputs.current_branch }}"
+
       - name: Merge current branch on mastery branch
         run: |
-          curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/${{ steps.branch-id.outputs.current_branch }}/merge' \
+          curl --location --request POST 'https://api.lokalise.com/api2/projects/4204698362972bb02dc737.79420570/branches/"${{ steps.branch-id.outputs.current_branch }}"/merge' \
           --header 'content-type: application/json' \
           --header 'x-api-token: ${{ secrets.LOKALISE_ACCESS_TOKEN }}'
