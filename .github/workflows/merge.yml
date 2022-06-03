@@ -26,7 +26,7 @@ jobs:
 
       - name: Get current branch id on Lokalise
         id: branch-id
-        run: jq -r --arg queryname "${{ steps.branch-name.outputs.current_branch }}" '.branches[] | select(.name == $queryname).branch_id' lokaliseBranches.json
+        run: echo "::set-output name=current_branch::$(jq -r --arg queryname "${{ steps.branch-name.outputs.current_branch }}" '.branches[] | select(.name == $queryname).branch_id' lokaliseBranches.json)"
 
       - name: Check result
-        run: echo ${{ steps.branch-id.outputs }}
+        run: echo "${{ steps.branch-id.outputs.current_branch }}"
