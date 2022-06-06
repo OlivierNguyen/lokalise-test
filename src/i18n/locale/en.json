@@ -1,4 +1,5 @@
 {
+    "a_key": "hello",
     "main": {
         "button": "Learn more about Lokalise",
         "title": "Welcome to my React app!"
