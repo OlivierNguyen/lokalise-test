@@ -19,7 +19,7 @@ function App() {
           style={{ width: 200 }}
           onChange={changeLanguageHandler}
         >
-          <option value="en">English!</option>
+          <option value="en">English</option>
           <option value="fr">Français</option>
         </select>
         <p>{t("main.title")}</p>
