@@ -1,5 +1,6 @@
 {
     "a_key": "Bonjour",
+    "a_new_key": "Bonjour",
     "main": {
         "button": "En savoir plus sur Lokalise",
         "title": "Bienvenue dans mon application React !"
