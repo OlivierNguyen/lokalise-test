@@ -1,4 +1,5 @@
 {
+    "a_key": "Bonjour",
     "main": {
         "button": "En savoir plus sur Lokalise",
         "title": "Bienvenue dans mon application React !"
