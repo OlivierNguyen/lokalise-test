@@ -1,7 +1,7 @@
 {
     "main": {
-        "title": "Welcome to my React app!",
-        "button": "Learn more about Lokalise"
+        "button": "Learn more about Lokalise",
+        "title": "Welcome to my React app!"
     },
     "wow": "Wow!"
 }
